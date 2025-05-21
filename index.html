@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>App de Notas</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f7f7f7;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+    }
+    #noteInput {
+      width: 100%;
+      height: 100px;
+      padding: 10px;
+      font-size: 16px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin-bottom: 20px;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      background-color: white;
+      margin-bottom: 10px;
+      padding: 10px;
+      border-radius: 5px;
+      position: relative;
+    }
+    .deleteBtn {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      background-color: #f44336;
+      border: none;
+      color: white;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+    .deleteBtn:hover {
+      background-color: #d32f2f;
+    }
+  </style>
+</head>
+<body>
+  <h1>App de Notas</h1>
+  <textarea id="noteInput" placeholder="Escribí tu nota..."></textarea>
+  <button onclick="addNote()">Guardar Nota</button>
+  <ul id="noteList"></ul>
+
+  <script>
+    function addNote() {
+      const input = document.getElementById('noteInput');
+      const noteText = input.value.trim();
+      if (noteText === '') return;
+
+      const li = document.createElement('li');
+      li.textContent = noteText;
+
+      const btn = document.createElement('button');
+      btn.textContent = 'Eliminar';
+      btn.className = 'deleteBtn';
+      btn.onclick = function () {
+        li.remove();
+      };
+
+      li.appendChild(btn);
+      document.getElementById('noteList').appendChild(li);
+      input.value = '';
+    }
+  </script>
+</body>
+</html>
